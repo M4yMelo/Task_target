@@ -1,4 +1,3 @@
-# Dados de faturamento
 faturamento = [
     {"dia": 1, "valor": 22174.1664},
     {"dia": 2, "valor": 24537.6698},
@@ -46,6 +45,20 @@ def calcular_estatisticas(faturamento):
 
 # Executa a função e armazena os resultados
 menor_valor, maior_valor, dias_sem_faturamento, media_faturamento = calcular_estatisticas(faturamento)
+# Filtra os valores de faturamento excluindo os dias com 0
+valores_com_faturamento = [item["valor"] for item in faturamento if item["valor"] > 0]
+
+# Calcula o menor valor de faturamento
+menor_valor = min(valores_com_faturamento)
+
+# Calcula o maior valor de faturamento
+maior_valor = max(valores_com_faturamento)
+
+# Calcula o número de dias sem faturamento
+dias_sem_faturamento = len([item for item in faturamento if item["valor"] == 0])
+
+# Calcula a média de faturamento
+media_faturamento = sum(valores_com_faturamento) / len(valores_com_faturamento)
 
 # Exibe os resultados
 print(f"Menor valor de faturamento: R$ {menor_valor:.2f}")
